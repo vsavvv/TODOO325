@@ -1,0 +1,18 @@
+<h1>Список пользователей</h1>
+<p>
+  <%= button_to "Новый", new_user_path, method: :get %>
+</p>
+<div id="users_list">
+  <% @users.each do |user| %>
+    <div class="user">
+    <p>
+      <label for="user<%= user.id %>[name]">Имя</label>
+      <input id="user<%= user.id %>[name]" value="<%= user.name %>" readonly="true" />
+    </p>
+    <p>
+      <label for="user<%= user.id %>[password]">Пароль</label>
+      <input id="user<%= user.id %>[password]" value="<%= user.password %>" readonly="true" />
+    </p>
+    </div>
+  <% end %>
+</div>

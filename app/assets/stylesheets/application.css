@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+#new_user label, #users_list label {
+  width: 100px;
+  display: inline-block;
+}
+#users_list > .user {
+  border-bottom: 1px solid #ddd;
+}
