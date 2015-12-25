@@ -1,0 +1,40 @@
+<% if @user %>
+  <h1>Задачи <%= @user.name %></h1>
+<% else %>
+  <h1>Список задач</h1>
+<% end %>
+<p>
+  <% if @user %>
+    <%= button_to "Создать и добавить", new_task_path, method: :get, params: { user_id: @user.id } %>
+    <%= button_to "Добавить существующую", join_task_user_path, method: :get %>
+  <% else %>
+    <%= button_to "Новая", new_task_path, method: :get %>
+  <% end %>
+</p>
+<div id="tasks_list">
+  <% @tasks.each do |task| %>
+    <div class="task">
+      <% if authenticated_user.is_admin %>
+        <%= button_to 'Удалить', task_path(task), method: :delete %>
+        <% if @user %>
+        <%= button_to 'Открепить', undock_task_path(task), method: :put, params: { user_id: @user.id } %>
+        <% end %>
+        <%= button_to 'Изменить', edit_task_path(task), method: :get %>
+        <%= button_to 'Пользователи', users_task_path(task), method: :get %>
+      <% end %>
+      <%= button_to 'Выполнил', complete_task_path(task), method: :put unless task.completed %>
+      <p>
+        <label for="task<%= task.id %>[id]">Номер</label>
+        <input id="task<%= task.id %>[id]" value="<%= task.id %>" readonly="true" />
+      </p>
+      <p>
+        <label for="task<%= task.id %>[description]">Описание</label>
+        <textarea id="task<%= task.id %>[description]" readonly="true"><%= task.description %></textarea>
+      </p>
+      <p>
+        <label for="task<%= task.id %>[completed]">Статус</label>
+        <input id="task<%= task.id %>[completed]" value="<%= task.status %>" readonly="true" />
+      </p>
+    </div>
+  <% end %>
+</div>

@@ -1,18 +1,33 @@
-<h1>Список пользователей</h1>
+<% if @task %>
+  <h1>Пользователи задачи №<%= @task.id %></h1>
+<% else %>
+  <h1>Список пользователей</h1>
+<% end %>
 <p>
-  <%= button_to "Новый", new_user_path, method: :get %>
+  <% if @task %>
+    <%= button_to "Создать и добавить", new_user_path, method: :get, params: { task_id: @task.id } %>
+    <%= button_to "Добавить существующего", join_user_task_path, method: :get %>
+  <% else %>
+    <%= button_to "Новый", new_user_path, method: :get %>
+  <% end %>
 </p>
 <div id="users_list">
   <% @users.each do |user| %>
     <div class="user">
-    <p>
-      <label for="user<%= user.id %>[name]">Имя</label>
-      <input id="user<%= user.id %>[name]" value="<%= user.name %>" readonly="true" />
-    </p>
-    <p>
-      <label for="user<%= user.id %>[password]">Пароль</label>
-      <input id="user<%= user.id %>[password]" value="<%= user.password %>" readonly="true" />
-    </p>
+      <%= button_to 'Удалить', user_path(user), method: :delete %>
+      <% if @task %>
+      <%= button_to 'Открепить', undock_user_path(user), method: :put, params: { task_id: @task.id } %>
+      <% end %>
+      <%= button_to 'Изменить', edit_user_path(user), method: :get %>
+      <%= button_to 'Задачи', tasks_user_path(user), method: :get %>
+      <p>
+        <label for="user<%= user.id %>[name]">Имя</label>
+        <input id="user<%= user.id %>[name]" value="<%= user.name %>" readonly="true" />
+      </p>
+      <p>
+        <label for="user<%= user.id %>[is_admin]">Админ?</label>
+        <input id="user<%= user.id %>[is_admin]" value="<%= user.is_admin ? 'да' : 'нет' %>" readonly="true" />
+      </p>
     </div>
   <% end %>
 </div>

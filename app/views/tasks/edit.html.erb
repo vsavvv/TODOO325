@@ -1,0 +1,14 @@
+<h1>Изменить задачу</h1>
+<%= form_for @task do |form| %>
+  <p>
+    <label for="task_description">Имя</label>
+    <%= form.text_field :description, required: true %>
+  </p>
+  <p>
+    <label for="task_completed">Завершена</label>
+    <%= form.check_box :completed %>
+  </p>
+  <p>
+    <%= form.submit "Изменить" %>
+  </p>
+<% end %>

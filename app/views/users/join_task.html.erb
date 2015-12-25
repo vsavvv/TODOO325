@@ -1,0 +1,20 @@
+<h1>Добавить задачу пользователю <%= @user.name %></h1>
+<div id="tasks_list">
+  <% @tasks.each do |task| %>
+    <div class="task">
+      <%= button_to 'Добавить', dock_task_path(task), method: :put, params: { user_id: @user.id } %>
+      <p>
+        <label for="task<%= task.id %>[id]">Номер</label>
+        <input id="task<%= task.id %>[id]" value="<%= task.id %>" readonly="true" />
+      </p>
+      <p>
+        <label for="task<%= task.id %>[description]">Описание</label>
+        <textarea id="task<%= task.id %>[description]" readonly="true"><%= task.description %></textarea>
+      </p>
+      <p>
+        <label for="task<%= task.id %>[completed]">Статус</label>
+        <input id="task<%= task.id %>[completed]" value="<%= task.status %>" readonly="true" />
+      </p>
+    </div>
+  <% end %>
+</div>

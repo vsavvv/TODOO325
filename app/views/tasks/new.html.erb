@@ -1,0 +1,23 @@
+<% if @user %>
+  <h1>Новая задача для <%= @user.name %></h1>
+<% else %>
+  <h1>Новая задача</h1>
+<% end %>
+<%= form_for @task do |form| %>
+  <% if authenticated_user.is_admin %>
+    <%= hidden_field_tag "task[user_ids][]", @user.id if @user %>
+  <% else %>
+    <%= hidden_field_tag "task[user_ids][]", authenticated_user.id %>
+  <% end %>
+  <p>
+    <label for="task_description">Описание</label>
+    <%= form.text_area :description, required: true %>
+  </p>
+  <p>
+    <label for="task_completed">Завершена</label>
+    <%= form.check_box :completed %>
+  </p>
+  <p>
+    <%= form.submit "Создать" %>
+  </p>
+<% end %>

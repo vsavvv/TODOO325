@@ -1,0 +1,12 @@
+<h1>Добавить пользователя задаче № <%= @task.id %></h1>
+<div id="users_list">
+  <% @users.each do |user| %>
+    <div class="user">
+      <%= button_to 'Добавить', dock_user_path(user), method: :put, params: { task_id: @task.id } %>
+      <p>
+        <label for="user<%= user.id %>[name]">Имя</label>
+        <input id="user<%= user.id %>[name]" value="<%= user.name %>" readonly="true" />
+      </p>
+    </div>
+  <% end %>
+</div>

@@ -7,6 +7,27 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<% flash.each do |name, message| %>
+  <%= content_tag :div, message, class: name %>
+<% end %>
+<% if session[:authenticated] %>
+  <%= content_tag :ul, id: 'menu' do %>
+    <% if authenticated_user.is_admin %>
+      <%= content_tag :li do %>
+        <%= button_to "Пользователи", users_path, disabled: (controller_name == 'users' and action_name == 'index'), method: :get %>
+      <% end %>
+    <% end %>
+    <%= content_tag :li do %>
+      <%= button_to "Задачи", tasks_path, disabled: (controller_name == 'tasks' and action_name == 'index'), method: :get %>
+    <% end %>
+    <%= content_tag :li do %>
+      Вы вошли как: <%= authenticated_user.name %>
+    <% end %>
+    <%= content_tag :li do %>
+      <%= button_to "Выйти", exit_users_path, method: :put %>
+    <% end %>
+  <% end %>
+<% end %>
 
 <%= yield %>
 

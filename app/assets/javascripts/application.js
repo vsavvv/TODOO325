@@ -13,3 +13,15 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(document).ready(function(){
+  $('form.edit_user,form.new_user').submit(function(){
+    if($('#user_password').val() != $('#password_again').val()) {
+      alert('Пароли не совпадают');
+      $('#user_password').val('');
+      $('#password_again').val('');
+      $('#user_password').focus();
+      return false;
+    }
+  });
+});

@@ -1,14 +1,23 @@
 <h1>Новый пользователь</h1>
 <%= form_for @user do |form| %>
-<p>
-  <label for="user[name]">Имя</label>
-  <%= form.text_field :name %>
-</p>
-<p>
-  <label for="user[name]">Пароль</label>
-  <%= form.password_field :password %>
-</p>
-<p>
-  <%= form.submit "Создать" %>
-</p>
+  <%= hidden_field_tag "user[task_ids][]", @task.id if @task %>
+  <p>
+    <label for="user_name">Имя</label>
+    <%= form.text_field :name, required: true %>
+  </p>
+  <p>
+    <label for="user_password">Пароль</label>
+    <%= form.password_field :password, required: true %>
+  </p>
+  <p>
+    <label for="password_again">Ещё раз</label>
+    <%= password_field_tag :password_again, nil, required: true %>
+  </p>
+  <p>
+    <label for="user_is_admin">Админ?</label>
+    <%= form.check_box :is_admin %>
+  </p>
+  <p>
+    <%= form.submit "Создать" %>
+  </p>
 <% end %>

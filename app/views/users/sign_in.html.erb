@@ -1,0 +1,14 @@
+<h1>Аутентификация</h1>
+<%= form_tag authenticate_users_path, id: "user_sign_in" do %>
+<p>
+  <label for="user_name">Имя</label>
+  <%= text_field_tag 'user[name]', nil, required: true %>
+</p>
+<p>
+  <label for="user_password">Пароль</label>
+  <%= password_field_tag 'user[password]', nil, required: true %>
+</p>
+<p>
+  <%= submit_tag "Войти" %>
+</p>
+<% end %>

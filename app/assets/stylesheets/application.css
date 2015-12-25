@@ -14,10 +14,64 @@
  *= require_self
  */
 
-#new_user label, #users_list label {
+body {
+  font-family: monospace;
+}
+#new_user label, #new_task label, #user_sign_in label, #users_list label, #tasks_list label, .edit_user label, .edit_task label {
   width: 100px;
   display: inline-block;
+  vertical-align: top;
+}
+#new_task input[type=checkbox], .edit_task input[type=checkbox], #new_user input[type=checkbox], .edit_user input[type=checkbox] {
+  margin: 0;
 }
 #users_list > .user {
-  border-bottom: 1px solid #ddd;
+  background-color: #eee;
+  padding: 5px;
+  border: 1px solid #ddd;
+  padding: 4px;
+  margin-bottom: 4px;
+}
+#tasks_list > .task {
+  background-color: #eee;
+  padding: 5px;
+  border: 1px solid #ddd;
+  padding: 4px;
+  margin-bottom: 4px;
+}
+div.error {
+  background-color: #eee;
+  border: 1px solid #ddd;
+  padding: 10px;
+  color: red;
+  font-weight: bold;
+}
+#menu {
+  list-style: none;
+  padding: 0;
+}
+#menu > li {
+  display: inline;
+}
+#menu > li > form {
+  position: relative;
+  display: inline;
+}
+#users_list > .user > .button_to {
+  float: right;
+  display: none;
+}
+#users_list > .user:hover > .button_to {
+  display: block;
+}
+#tasks_list > .task > .button_to {
+  display: inline;
+  float: right;
+  display: none;
+}
+#tasks_list > .task:hover > .button_to {
+  display: block;
+}
+.button_to {
+  display: inline;
 }
