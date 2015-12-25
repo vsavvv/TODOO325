@@ -41,6 +41,7 @@ class UsersController < ApplicationController
     session[:authenticated] = user.id if user
     if session[:authenticated]
       flash.delete :error
+      flash[:notice] = "Вход выполнен успешно"
       redirect_to controller: session[:controller_back], action: session[:action_back]
     else
       flash[:error] = 'Доступ запрещен'

@@ -39,12 +39,17 @@ body {
   padding: 4px;
   margin-bottom: 4px;
 }
-div.error {
+div.error, div.notice {
   background-color: #eee;
   border: 1px solid #ddd;
   padding: 10px;
-  color: red;
   font-weight: bold;
+}
+div.error {
+  color: red;
+}
+div.notice {
+  color: green;
 }
 #menu {
   list-style: none;

@@ -1,5 +1,6 @@
 class Task < ActiveRecord::Base
   has_and_belongs_to_many :users
+  validates :description, presence: true
 
   def status
     fulfiller = User.where(id: self.fulfilled).first
